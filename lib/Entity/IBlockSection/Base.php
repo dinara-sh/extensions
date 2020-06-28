@@ -6,11 +6,11 @@ use Itgro\Entity\IBlock\Base as IBlockBase;
 
 abstract class Base extends IBlockBase
 {
-    protected function getObjects(): CDBResult
+    protected function getObjects(): \CDBResult
     {
         $this->expandFilter(['IBLOCK_ID' => $this->getIBlockId()]);
 
-        $CIBlockSection = new CIBlockSection();
+        $CIBlockSection = new \CIBlockSection();
         return $CIBlockSection->GetList(
             $this->getOrder(),
             $this->getFilter(),
@@ -24,7 +24,7 @@ abstract class Base extends IBlockBase
     {
         $this->expandFilter(['IBLOCK_ID' => $this->getIBlockId()]);
 
-        $CIBlockSection = new CIBlockSection();
+        $CIBlockSection = new \CIBlockSection();
         return $CIBlockSection->GetCount($this->filter);
     }
 
@@ -38,12 +38,12 @@ abstract class Base extends IBlockBase
             $fields
         );
 
-        $CIBlockSection = new CIBlockSection();
+        $CIBlockSection = new \CIBlockSection();
 
         $result = $CIBlockSection->Add($fields);
 
         if (!$result) {
-            throw new Exception($CIBlockSection->LAST_ERROR);
+            throw new \Exception($CIBlockSection->LAST_ERROR);
         }
 
         return $result;
